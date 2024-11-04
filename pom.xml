@@ -2,20 +2,18 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<artifactId/>
 	<parent>
-		<artifactId>spring-boot-starter-parent</artifactId>
 		<groupId>org.springframework.boot</groupId>
-		<version/>
-		<!--<version>3.3.5</version>-->
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.3.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<parent>
-		<artifactId>module03-question02</artifactId>
-		<groupId>spring-professional-exam-tutorial-module03</groupId>
-		<version>1.0-SNAPSHOT</version>
-	</parent>
-
+	<groupId>com.product.app.controller</groupId>
+	<artifactId>productapp</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>productapp</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
 	<licenses>
 		<license/>
 	</licenses>
@@ -29,7 +27,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>11</java.version>
+		<java.version>17</java.version>
 		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
@@ -57,6 +55,10 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jdbc</artifactId>
 		</dependency>
 		<dependency>
 			<groupId>org.hsqldb</groupId>
