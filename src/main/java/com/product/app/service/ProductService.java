@@ -8,9 +8,10 @@ import org.springframework.stereotype.Service;
 public class ProductService {
 
     @Autowired
-    ProductDao productDao;
+    private ProductDao productDao;
 
     public void printReport(){
+        System.out.println("inside print report============");
          productDao.employeeListDetails().forEach(System.out::println);
     }
 }

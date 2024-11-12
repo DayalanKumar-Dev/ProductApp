@@ -1,3 +1,4 @@
+/*
 package com.product.app.configuration;
 
 
@@ -7,17 +8,18 @@ import org.springframework.jdbc.datasource.embedded.EmbeddedDatabaseBuilder;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class ProductDatabaseConfiguration {
 
-    @Bean
+   // @Bean
     public DataSource dataSource(){
         return new EmbeddedDatabaseBuilder()
                 .generateUniqueName(true)
                 .setScriptEncoding("UTF-8")
-                .addScript("db-schema.sql")
-                .addScripts("db-test-data.sql")
+              //  .addScript("db-schema.sql")
+              //   .addScripts("db-test-data.sql")
                 .build();
 
     }
 }
+*/
