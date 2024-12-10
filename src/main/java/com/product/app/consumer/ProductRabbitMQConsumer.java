@@ -13,7 +13,7 @@ public class ProductRabbitMQConsumer {
    // private static final Logger logger = (Logger) LoggerFactory.getLogger(ProductRabbitMQProducer.class);
 
     //@RabbitListener(queues = {"${rabbitmq.queue.name}"})
-    @RabbitListener(queues = "product_queue")
+   // @RabbitListener(queues = "product_queue")
     public void consume(String message){
         System.out.println("message in consumer============="+message);
     }

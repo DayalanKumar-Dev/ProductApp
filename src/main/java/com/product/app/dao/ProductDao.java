@@ -18,6 +18,6 @@ public class ProductDao {
     }
 
     public List<String> employeeListDetails(){
-        return jdbcTemplate.queryForList("select email from employee", String.class);
+        return jdbcTemplate.queryForList("select email from employee1", String.class);
     }
 }

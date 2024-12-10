@@ -4,7 +4,7 @@ package com.product.app.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.product.app.event.ProductEvent;
 import com.product.app.event.ProductEventType;
-import com.product.app.producer.ProductEventProducer;
+import com.product.app.producer.ProductKafkaEventProducer;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,15 +17,15 @@ import java.util.concurrent.ExecutionException;
 
 @RestController
 @Slf4j
-public class ProductController {
+public class ProductKafkaController {
 
     @Autowired
-    ProductEventProducer productEventProducer;
+    ProductKafkaEventProducer productKafkaEventProducer;
 
     @PostMapping("/productEvent")
     public ResponseEntity<ProductEvent> postProductEvent(@RequestBody ProductEvent productEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
         productEvent.setProductEventType(ProductEventType.NEW);
-        productEventProducer.sendProducerEvents(productEvent);
+        productKafkaEventProducer.sendProducerEvents_Approach3(productEvent);
         return ResponseEntity.status(HttpStatus.CREATED).body(productEvent);
     }
 

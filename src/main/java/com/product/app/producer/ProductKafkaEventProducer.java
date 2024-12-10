@@ -4,6 +4,7 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.product.app.event.ProductEvent;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.clients.producer.ProducerRecord;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.support.SendResult;
@@ -13,7 +14,7 @@ import org.springframework.util.concurrent.ListenableFutureCallback;
 
 @Component
 @Slf4j
-public class ProductEventProducer {
+public class ProductKafkaEventProducer {
 
     @Autowired
     KafkaTemplate<Integer, String> kafkaTemplate;
@@ -23,6 +24,7 @@ public class ProductEventProducer {
     @Autowired
     ObjectMapper objectMapper;
 
+    //below method used for asynchronous approach
     public void sendProducerEvents(ProductEvent productEvent) throws JsonProcessingException {
         Integer key = productEvent.getProductEventId();
         String value = objectMapper.writeValueAsString(productEvent);
@@ -39,8 +41,23 @@ public class ProductEventProducer {
                 handleSuccess(key, value, result);
             }
         });
+    }
 
+    public void sendProducerEvents_Approach3(ProductEvent productEvent) throws JsonProcessingException{
+        try{
+            Integer key = productEvent.getProductEventId();
+            String value = objectMapper.writeValueAsString(productEvent);
+            ProducerRecord<Integer, String> producerRecord = buildProducerRecord(key, value, topic);
+            log.info("sending message in approach3========start");
+            kafkaTemplate.send(producerRecord);
+            log.info("sending message in approach3========end");
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+    }
 
+    private ProducerRecord<Integer, String> buildProducerRecord(Integer key, String value, String topic){
+        return new ProducerRecord<>(topic, null, key, value, null);
     }
 
     private void handleSuccess(Integer key, String value, SendResult<Integer,String> result){
