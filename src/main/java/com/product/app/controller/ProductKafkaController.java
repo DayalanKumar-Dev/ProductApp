@@ -24,7 +24,7 @@ public class ProductKafkaController {
 
     @PostMapping("/productEvent")
     public ResponseEntity<ProductEvent> postProductEvent(@RequestBody ProductEvent productEvent) throws JsonProcessingException, ExecutionException, InterruptedException {
-        productEvent.setProductEventType(ProductEventType.NEW);
+        //productEvent.setProductEventType(ProductEventType.NEW);
         productKafkaEventProducer.sendProducerEvents_Approach3(productEvent);
         return ResponseEntity.status(HttpStatus.CREATED).body(productEvent);
     }
